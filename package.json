@@ -14,16 +14,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/x-dr/short.git"
+    "url": "https://github.com/xiaokcoding/short.git"
   },
   "keywords": [
     "short",
     "url"
   ],
-  "author": "x-dr",
+  "author": "xiaokcoding",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/x-dr/short/issues"
+    "url": "https://github.com/xiaokcoding/short/issues"
   },
-  "homepage": "https://github.com/x-dr/short#readme"
+  "homepage": "https://github.com/xiaokcoding/short#readme"
 }

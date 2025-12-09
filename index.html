@@ -1,277 +1,334 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="asset/img/favicon.png"  >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>short</title>
-    <style>
-      :root {
-        --color-primary: #5c7cfa;
-        --color-primary-dark: #4263eb;
-        --color-primary-alpha: #5c7cfa50;
+<html lang="zh-CN">
 
-        --body-color: #495057;
-        --body-bg: #f8f9fa;
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="asset/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Short</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      /* Indigo 500 */
+      --primary-hover: #4f46e5;
+      /* Indigo 600 */
+      --bg-gradient-start: #e0e7ff;
+      --bg-gradient-end: #fae8ff;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+      --card-bg: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
 
-        --border-color: #dee2e6;
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-color);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 主容器：卡片样式 */
+    main {
+      background: var(--card-bg);
+      width: 90%;
+      max-width: 480px;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.3s ease;
+    }
+
+    header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      background: -webkit-linear-gradient(45deg, var(--primary-color), #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.025em;
+    }
+
+    header p {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* Alpine Cloak */
+    [x-cloak] {
+      display: none !important;
+    }
+
+    /* 输入框组样式 */
+    .input-group {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      color: var(--text-color);
+      background-color: #f9fafb;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--primary-color);
+      background-color: #fff;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    /* 辅助文字 */
+    .helper-text {
+      display: block;
+      margin-top: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+
+    /* 按钮样式 */
+    button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.875rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: var(--primary-color);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px -1px rgba(99, 102, 241, 0.5);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      background: #a5b4fc;
+      box-shadow: none;
+    }
+
+    /* Loading 动画 */
+    button.loading svg {
+      animation: spin 1s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
       }
 
-      body {
-        max-width: 30rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        color: var(--body-color);
-        background: var(--body-bg);
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        line-height: 1.5;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        text-rendering: optimizelegibility;
-        -webkit-font-smoothing: antialiased;
+      to {
+        transform: rotate(360deg);
       }
+    }
 
-      a {
-        color: var(--color-primary);
-        text-decoration: none;
-        transition: color .3s;
-      }
+    /* 提示框样式 */
+    .alert {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
 
-      a:hover {
-        color: var(--color-primary);
-        text-decoration: underline;
-      }
+    .alert.success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
 
-      h1 {
-        font-size: 5rem;
-        font-weight: 300;
-        text-align: center;
-        opacity: .2;
-      }
+    .alert.error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
 
-      main[x-cloak] {
+    @keyframes fadeIn {
+      from {
         opacity: 0;
+        transform: translateY(-10px);
       }
 
-      main:not([x-cloak]) {
+      to {
         opacity: 1;
-        transition: opacity .3s;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 640px) {
+      main {
+        padding: 1.5rem;
+        width: 85%;
       }
 
-      input {
-        -webkit-appearance: none;
-        appearance: none;
-        display: block;
-        width: 100%;
-        padding: .5rem 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: .25rem;
-        box-sizing: border-box;
-        color: #33404d;
-        line-height: inherit;
-        font-size: 1rem;
-        transition: border .3s, box-shadow .3s;
+      header h1 {
+        font-size: 2rem;
       }
+    }
+  </style>
+</head>
 
-      input:focus {
-        box-shadow: 0 0 0 .25rem var(--color-primary-alpha);
-        border-color: var(--color-primary);
-        outline: 0;
-      }
+<body>
 
-      details {
-        margin: 1rem 0 2rem;
-        border: 1px solid var(--border-color);
-        border-radius: .25rem;
-        transition: background .3s;
-      }
+  <main x-data="app" x-cloak>
+    <header>
+      <h1>Short Link</h1>
+      <p>简单、快速的网址缩短服务</p>
+    </header>
 
-      details[open] {
-        background: #fff;
-      }
+    <div x-show.transition.opacity="alert" class="alert" :class="alert?.type" x-text="alert?.message"></div>
 
-      details summary {
-        padding: .5rem 1rem;
-        font-weight: 500;
-        user-select: none;
-        cursor: pointer;
-        opacity: .8;
-        outline: 0;
-      }
+    <div class="input-group">
+      <label class="input-label">长链接</label>
+      <input type="text" placeholder="输入要缩短的网址..." x-model="url" x-ref="url"
+        @keydown.enter="submit($refs, $nextTick)" />
+    </div>
 
-      details div {
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-      }
+    <div class="input-group">
+      <label class="input-label">自定义后缀 (Slug)</label>
+      <input type="text" placeholder="slug" x-model="slug" />
+      <small class="helper-text">留空则自动生成随机短链 ID</small>
+    </div>
 
-      details small {
-        margin: 0;
-        font-size: .875rem;
-        line-height: 2;
-      }
+    <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">
+      <svg x-show="loading" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+        viewBox="0 0 24 24" width="20" height="20">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+        </path>
+      </svg>
+      <span x-text="loading ? '生成中...' : '生成短链接'"></span>
+    </button>
+  </main>
 
-      button {
-        appearance: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 5rem;
-        padding: .5rem .75rem;
-        border: 1px solid var(--color-primary);
-        border-radius: .25rem;
-        background: var(--color-primary);
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: inherit;
-        cursor: pointer;
-        user-select: none;
-        transition: border .3s, background .3s,;
-      }
+  <footer>
+    <p>Powered by <a href="https://github.com/xiaokcoding/short" target="_blank">Short</a> | Cloudflare Pages</p>
+  </footer>
 
-      button:hover {
-        border-color: var(--color-primary-dark);
-        background: var(--color-primary-dark);
-      }
-
-      button:focus {
-        box-shadow: 0 0 0 .25rem var(--color-primary-alpha);
-        border-color: var(--color-primary);
-        outline: 0;
-      }
-
-      button:disabled {
-        background: var(--color-primary);
-        border-color: var(--color-primary);
-        opacity: .6;
-        cursor: not-allowed;
-      }
-
-      button.loading::before {
-        content: '';
-        display: inline-block;
-        margin-right: .5rem;
-        border: 2px solid #fff;
-        border-top-color: transparent;
-        border-bottom-color: transparent;
-        border-radius: 50%;
-        width: .75rem;
-        height: .75rem;
-        animation: rotate .5s linear infinite;
-      }
-
-      footer {
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-        text-align: center;
-        opacity: .5;
-      }
-
-      footer i {
-        font-style: normal;
-        color: #ff8787;
-      }
-
-      .success,
-      .error {
-        margin-bottom: 1rem;
-        padding: .5rem 1rem;
-        border-radius: .25rem;
-        color: #fff;
-        text-align: center;
-        opacity: 1;
-        transition: opacity .3s;
-      }
-
-      .success {
-        border: 1px solid #12b886;
-        background: #38d9a9;
-      }
-
-      .error {
-        border: 1px solid #fa5252;
-        background: #ff8787;
-      }
-
-      @keyframes rotate {
-        100% {
-          transform: rotate(360deg);
+  <script src="asset/js/alpine.js"></script>
+  <script>
+    const app = {
+      url: '',
+      slug: '',
+      alert: null,
+      loading: false,
+      isValidated() {
+        // 简单的正则检查，确保包含 http/https
+        return !/^https?:\/\/.{3,}/.test(this.url)
+      },
+      submit($refs, $nextTick) {
+        if (!this.url) {
+          this.alert = { type: 'error', message: '请输入需要缩短的网址' }
+          return
         }
-      }
-    </style>
-  </head>
-  <body>
-    <header><h1>short</h1></header>
-    <main x-data="app" x-cloak>
-      <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
-      <input placeholder="输入要缩短的网址..." x-model="url" x-ref="url" />
-      <details>
-        <summary>自定义设置</summary>
-        <div>
-          <input placeholder="slug" x-model="slug" />
-          <small>Slug 默认是随机生成的短 id。</small>
-        </div>
-      </details>
-      <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">生成</button>
-    </main>
-    <footer>
-     service
-    </footer>
-    <script src="asset/js/alpine.js"></script>
-    <script>
-      const app = {
-        url: '',
-        slug: '',
-        alert: null,
-        loading: false,
-        isValidated () {
-          return !/^https?:\/\/.{3,}/.test(this.url)
-        },
-        submit ($refs, $nextTick) {
-          if (!this.url) {
-            this.alert = { type: 'error', message: '缺少必需的参数：url。' }
-            return
-          }
 
-          if (this.isValidated()) {
-            this.alert = { type: 'error', message: '非法格式：url。' }
-            return
-          }
+        if (this.isValidated()) {
+          this.alert = { type: 'error', message: '网址格式不正确，请以 http:// 或 https:// 开头' }
+          return
+        }
 
-          this.alert = null
-          this.loading = true
+        this.alert = null
+        this.loading = true
 
-          const body = { url: this.url }
-          if (this.slug) body.slug = this.slug
+        const body = { url: this.url }
+        if (this.slug) body.slug = this.slug
 
-          fetch('/create', {
-            method: 'post',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(body)
-          })
-            .then(res => res.json())
-            .then(res => {
-              this.loading = false
-              if (res.message) {
-                this.alert = { type: 'error', message: res.message }
-                return
+        fetch('/create', {
+          method: 'post',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+          .then(res => res.json())
+          .then(res => {
+            this.loading = false
+            if (res.message) {
+              this.alert = { type: 'error', message: res.message }
+              return
+            }
+
+            this.url = res.link
+
+            $nextTick(() => {
+              $refs.url.select()
+              // 尝试复制到剪贴板
+              try {
+                const successful = document.execCommand('copy');
+                const msg = successful ? '链接已生成并复制到剪贴板！' : '链接已生成，请手动复制';
+                this.alert = { type: 'success', message: msg }
+              } catch (err) {
+                this.alert = { type: 'success', message: '链接已生成' }
               }
-
-              this.url = res.link
-
-              $nextTick(() => {
-                $refs.url.select()
-                this.alert = { type: 'success', message: `链接 ${document.execCommand('Copy') ? '复制' : '生成'} ` }
-              })
             })
-            .catch(e => {
-              this.alert = { type: 'error', message: e.message }
-              this.loading = false
-            })
-        }
+          })
+          .catch(e => {
+            this.alert = { type: 'error', message: '服务请求失败：' + e.message }
+            this.loading = false
+          })
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

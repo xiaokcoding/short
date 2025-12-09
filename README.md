@@ -76,5 +76,9 @@ curl -X POST -H "Content-Type: application/json" -d '{"url":"https://131213.xyz"
 }
 ```
 
+## 致谢
+
+* 感谢原作者 [x-dr](https://github.com/x-dr) 开发的 [short](https://github.com/x-dr/short) 项目。
+* 本项目在此基础上进行了 UI 界面美化与功能优化。
 
 

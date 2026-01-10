@@ -32,16 +32,19 @@
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      gap: 1rem;
-      justify-items: center;
+      height: 100vh;
+      /* Fixed height to viewport */
+      overflow: hidden;
+      /* Prevent scrolling */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
       color: var(--text-color);
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
 
     /* 主容器：卡片样式 */
@@ -50,7 +53,6 @@
       width: 90%;
       max-width: 680px;
       padding: 1.5rem 2.5rem 2.5rem;
-      /* Reduced top padding to 1.5rem */
       border-radius: 1.5rem;
       box-shadow: var(--shadow-lg);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,6 +60,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.6);
+      margin: auto;
+      /* Center in flex container */
     }
 
     main::before {
@@ -285,12 +289,17 @@
     }
 
     footer {
-      padding: 1rem;
+      position: absolute;
+      bottom: 1.5rem;
+      left: 0;
       width: 100%;
       text-align: center;
       font-size: 0.9rem;
+      color: white;
+      /* Changed color for better visibility on gradient if needed, or keep dark. Let's keep dark but ensure contrast. Actually user has light bg card but footer is on gradient body. */
       color: #334155;
       font-weight: 500;
+      padding: 1rem;
     }
 
     footer p {

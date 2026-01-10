@@ -71,6 +71,18 @@
       letter-spacing: -0.025em;
     }
 
+    .brand-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .brand-title img {
+      width: 32px;
+      height: 32px;
+    }
+
     header p {
       text-align: center;
       color: var(--text-secondary);
@@ -118,9 +130,10 @@
     .input-label {
       display: block;
       margin-bottom: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text-secondary);
+      letter-spacing: 0.01em;
     }
 
     input {
@@ -241,18 +254,20 @@
     footer {
       margin-top: 2rem;
       text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
+      font-size: 0.9rem;
+      color: #334155;
+      font-weight: 500;
     }
 
     footer a {
-      color: var(--primary-color);
+      color: #2563eb;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, color 0.2s;
     }
 
     footer a:hover {
       text-decoration: underline;
+      color: #1d4ed8;
     }
 
     /* 移动端微调 */
@@ -305,7 +320,10 @@
 
   <main x-data="app" x-cloak>
     <header>
-      <h1>Short Link</h1>
+      <h1 class="brand-title">
+        <img src="https://img.icons8.com/color/96/cloudflare.png" alt="Cloudflare" />
+        Short Link
+      </h1>
       <p>轻量、快速、安全的短链接生成服务</p>
     </header>
 

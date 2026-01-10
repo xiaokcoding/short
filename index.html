@@ -518,13 +518,13 @@
     <div x-show="!success">
       <div class="input-group">
         <label class="input-label">长链接</label>
-        <input type="text" x-model="url" x-ref="url" @keydown.enter="submit($refs, $nextTick)" />
+        <input type="text" placeholder="例如: https://example.com/v1/2026/long-url...." x-model="url" x-ref="url"
+          @keydown.enter="submit($refs, $nextTick)" />
       </div>
 
       <div class="input-group">
         <label class="input-label">自定义后缀 (可选)</label>
-        <input type="text" x-model="slug" />
-        <small class="helper-text">留空则自动生成随机短链 ID</small>
+        <input type="text" placeholder="例如: good 或者 worker-2026" x-model="slug" />
       </div>
 
       <button :class="{ loading }" :disabled="loading" @click="submit($refs, $nextTick)">
@@ -589,6 +589,10 @@
             this.success = true
             this.url = ''
             this.slug = ''
+            // Auto copy to clipboard
+            this.$nextTick(() => {
+              this.copyResult()
+            })
           })
           .catch(e => {
             this.alert = { type: 'error', message: '服务请求失败：' + e.message }

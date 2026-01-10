@@ -82,12 +82,11 @@
 
     .brand-mark {
       display: block;
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 1.5rem;
-      /* Remove drop-shadow if it highlights the box, or keep if transparent.
-         Assuming white bg image, we use multiply to hide it. */
-      mix-blend-mode: multiply;
+      width: 140px;
+      /* Slightly wider to maintain visual weight */
+      height: auto;
+      /* CRITICAL: Remove fixed height to eliminate top/bottom whitespace */
+      margin: 0 auto 0.5rem;
       transition: transform 0.3s ease;
     }
 

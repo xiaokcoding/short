@@ -5,7 +5,11 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="asset/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Short</title>
+  <title>Short - 极速安全的短链接生成服务</title>
+  <meta name="description" content="基于 Cloudflare Pages 构建的现代化短链接生成服务，极速、安全、支持自定义后缀。" />
+  <meta property="og:title" content="Short - 极速短链接服务" />
+  <meta property="og:description" content="基于 Cloudflare Pages 的轻量、安全短链接服务" />
+  <meta property="og:type" content="website" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap"
     rel="stylesheet">
@@ -63,28 +67,38 @@
     }
 
     header h1 {
-      margin: 0 0 0.4rem 0;
-      font-size: 2.1rem;
-      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      font-weight: 800;
       text-align: center;
-      color: var(--text-color);
-      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
       font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
     }
 
     .brand-mark {
       display: block;
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 0.5rem;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+      transition: transform 0.3s ease;
+    }
+
+    .brand-mark:hover {
+      transform: scale(1.05) rotate(3deg);
     }
 
     header p {
       text-align: center;
       color: #64748b;
-      margin-bottom: 0.9rem;
-      font-size: 0.98rem;
-      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      font-weight: 400;
     }
 
     .status-pill {
@@ -110,6 +124,19 @@
       border-radius: 999px;
       background: var(--status-green);
       box-shadow: 0 0 8px rgba(72, 187, 120, 0.6);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
     }
 
     /* Alpine Cloak */
@@ -290,19 +317,79 @@
 
     .feature-card {
       background: #f8fafc;
-      border-radius: 0.75rem;
-      padding: 0.6rem 0.7rem;
+      border-radius: 1rem;
+      padding: 1rem;
       text-align: center;
-      border: 1px solid #e2e8f0;
-      font-size: 0.78rem;
+      border: 1px solid #f1f5f9;
+      font-size: 0.85rem;
       color: var(--text-secondary);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-card:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--primary-color);
+    }
+
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
     }
 
     .feature-card strong {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text-color);
-      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+
+    /* 结果区域样式 */
+    .result-section {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .result-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .result-input-group input {
+      background: #fff;
+      border-color: #86efac;
+      color: #166534;
+      font-weight: 500;
+    }
+
+    .icon-btn {
+      padding: 0.875rem;
+      flex-shrink: 0;
+      width: auto;
+      margin-top: 0;
+      background: #fff;
+      border: 2px solid #86efac;
+      color: #166534;
+      box-shadow: none;
+    }
+
+    .icon-btn:hover {
+      background: #dcfce7;
+      transform: none;
+      box-shadow: none;
     }
 
     @media (max-width: 520px) {
@@ -329,14 +416,25 @@
 
     <section class="feature-grid">
       <div class="feature-card">
+        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
         <strong>极速生成</strong>
         <span>毫秒级响应</span>
       </div>
       <div class="feature-card">
+        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
         <strong>安全稳定</strong>
         <span>Cloudflare 加持</span>
       </div>
       <div class="feature-card">
+        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
         <strong>自定义</strong>
         <span>支持专属后缀</span>
       </div>
@@ -344,28 +442,65 @@
 
     <div x-show.transition.opacity="alert" class="alert" :class="alert?.type" x-text="alert?.message"></div>
 
-    <div class="input-group">
-      <label class="input-label">长链接</label>
-      <input type="text" placeholder="输入要缩短的网址..." x-model="url" x-ref="url"
-        @keydown.enter="submit($refs, $nextTick)" />
+    <!-- 结果显示区域 -->
+    <div class="result-section" x-show="success" style="display: none;">
+      <div
+        style="color: #166534; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+          </path>
+        </svg>
+        生成成功！
+      </div>
+
+      <div class="result-input-group">
+        <input type="text" x-model="generatedLink" readonly @click="$event.target.select()" />
+        <button class="icon-btn" @click="copyResult()" title="复制链接">
+          <svg x-show="!copied" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20"
+            height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 012-2v-8a2 2 0 01-2-2h-8a2 2 0 01-2 2v8a2 2 0 012 2z">
+            </path>
+          </svg>
+          <svg x-show="copied" style="display: none;" class="w-5 h-5" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <button @click="reset()"
+        style="background: transparent; border: 1px solid #cbd5e1; color: #64748b; margin-top: 1rem; box-shadow: none;">
+        生成新的链接
+      </button>
     </div>
 
-    <div class="input-group">
-      <label class="input-label">自定义后缀 (Slug)</label>
-      <input type="text" placeholder="slug" x-model="slug" />
-      <small class="helper-text">留空则自动生成随机短链 ID</small>
-    </div>
+    <!-- 表单区域 -->
+    <div x-show="!success">
+      <div class="input-group">
+        <label class="input-label">长链接</label>
+        <input type="text" placeholder="google.com" x-model="url" x-ref="url"
+          @keydown.enter="submit($refs, $nextTick)" />
+      </div>
 
-    <button :class="{ loading }" :disabled="loading || isValidated()" @click="submit($refs, $nextTick)">
-      <svg x-show="loading" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-        viewBox="0 0 24 24" width="20" height="20">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-        </path>
-      </svg>
-      <span x-text="loading ? '生成中...' : '生成短链接'"></span>
-    </button>
+      <div class="input-group">
+        <label class="input-label">自定义后缀 (Slug)</label>
+        <input type="text" placeholder="slug" x-model="slug" />
+        <small class="helper-text">留空则自动生成随机短链 ID</small>
+      </div>
+
+      <button :class="{ loading }" :disabled="loading" @click="submit($refs, $nextTick)">
+        <svg x-show="loading" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" width="20" height="20">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+          </path>
+        </svg>
+        <span x-text="loading ? '生成中...' : '生成短链接'"></span>
+      </button>
+    </div>
   </main>
 
   <footer>
@@ -379,19 +514,19 @@
       slug: '',
       alert: null,
       loading: false,
-      isValidated() {
-        // 简单的正则检查，确保包含 http/https
-        return !/^https?:\/\/.{3,}/.test(this.url)
-      },
+      success: false,
+      generatedLink: '',
+      copied: false,
+
       submit($refs, $nextTick) {
         if (!this.url) {
           this.alert = { type: 'error', message: '请输入需要缩短的网址' }
           return
         }
 
-        if (this.isValidated()) {
-          this.alert = { type: 'error', message: '网址格式不正确，请以 http:// 或 https:// 开头' }
-          return
+        // 智能补全: 如果没有 http/https，默认补全 https://
+        if (!/^https?:\/\//i.test(this.url)) {
+          this.url = 'https://' + this.url
         }
 
         this.alert = null
@@ -413,24 +548,56 @@
               return
             }
 
-            this.url = res.link
-
-            $nextTick(() => {
-              $refs.url.select()
-              // 尝试复制到剪贴板
-              try {
-                const successful = document.execCommand('copy');
-                const msg = successful ? '链接已生成并复制到剪贴板！' : '链接已生成，请手动复制';
-                this.alert = { type: 'success', message: msg }
-              } catch (err) {
-                this.alert = { type: 'success', message: '链接已生成' }
-              }
-            })
+            this.generatedLink = res.link
+            this.success = true
+            this.url = ''
+            this.slug = ''
           })
           .catch(e => {
             this.alert = { type: 'error', message: '服务请求失败：' + e.message }
             this.loading = false
           })
+      },
+
+      reset() {
+        this.success = false
+        this.generatedLink = ''
+        this.copied = false
+        this.alert = null
+      },
+
+      copyResult() {
+        if (!this.generatedLink) return
+
+        // 优先使用 Clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(this.generatedLink)
+            .then(() => {
+              this.copied = true
+              setTimeout(() => this.copied = false, 2000)
+            })
+            .catch(() => {
+              this.fallbackCopy()
+            })
+        } else {
+          this.fallbackCopy()
+        }
+      },
+
+      fallbackCopy() {
+        // Fallback for older browsers
+        const input = document.createElement('textarea')
+        input.value = this.generatedLink
+        document.body.appendChild(input)
+        input.select()
+        try {
+          document.execCommand('copy')
+          this.copied = true
+          setTimeout(() => this.copied = false, 2000)
+        } catch (err) {
+          this.alert = { type: 'error', message: '复制失败，请手动复制' }
+        }
+        document.body.removeChild(input)
       }
     }
   </script>

@@ -61,14 +61,19 @@
     }
 
     header h1 {
-      margin: 0 0 0.5rem 0;
-      font-size: 2.1rem;
+      margin: 0 0 0.6rem 0;
+      font-size: 2.3rem;
       font-weight: 700;
       text-align: center;
-      background: -webkit-linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.025em;
+      color: #2f3747;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      display: block;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 0.75rem;
     }
 
     .brand-title {
@@ -85,9 +90,35 @@
 
     header p {
       text-align: center;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 1.4rem;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #f0fdf4;
+      color: #15803d;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid #bbf7d0;
+      margin: 0 auto 1.25rem;
+      width: fit-content;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--status-green);
+      box-shadow: 0 0 8px rgba(72, 187, 120, 0.6);
     }
 
     .status-pill {
@@ -320,11 +351,9 @@
 
   <main x-data="app" x-cloak>
     <header>
-      <h1 class="brand-title">
-        <img src="https://img.icons8.com/color/96/cloudflare.png" alt="Cloudflare" />
-        Short Link
-      </h1>
-      <p>轻量、快速、安全的短链接生成服务</p>
+      <img class="brand-mark" src="https://img.icons8.com/color/96/cloudflare.png" alt="Cloudflare" />
+      <h1>Short Link</h1>
+      <p>基于 Cloudflare Pages 的轻量、安全短链接服务</p>
     </header>
 
     <div class="status-pill">

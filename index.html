@@ -52,7 +52,8 @@
       background: var(--card-bg);
       width: 90%;
       max-width: 680px;
-      padding: 1.5rem 2.5rem 2.5rem;
+      padding: 1.5rem 2rem 2rem;
+      /* Tighter padding */
       border-radius: 1.5rem;
       box-shadow: var(--shadow-lg);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -90,7 +91,8 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
+      /* Reduced margin */
     }
 
     .brand-mark {
@@ -108,7 +110,8 @@
     header p {
       text-align: center;
       color: #64748b;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      /* Reduced from 1.5rem */
       font-size: 1.05rem;
       line-height: 1.6;
       font-weight: 400;
@@ -126,7 +129,8 @@
       font-size: 0.8rem;
       font-weight: 600;
       border: 1px solid #bbf7d0;
-      margin: 0 auto 0.75rem;
+      margin: 0 auto 0.5rem;
+      /* Reduced from 0.75rem */
       width: fit-content;
       box-shadow: var(--shadow-sm);
     }
@@ -159,7 +163,8 @@
 
     /* 输入框组样式 */
     .input-group {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
+      /* Reduced from 1.25rem */
       position: relative;
       z-index: 1;
     }
@@ -290,16 +295,20 @@
 
     footer {
       position: absolute;
-      bottom: 1.5rem;
+      bottom: 0;
       left: 0;
       width: 100%;
-      text-align: center;
+      height: 60px;
+      /* Fixed height for the footer area */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.9rem;
-      color: white;
-      /* Changed color for better visibility on gradient if needed, or keep dark. Let's keep dark but ensure contrast. Actually user has light bg card but footer is on gradient body. */
-      color: #334155;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       font-weight: 500;
-      padding: 1rem;
+      padding: 0;
+      /* Remove padding as flex handles centering */
     }
 
     footer p {
@@ -307,14 +316,16 @@
     }
 
     footer a {
-      color: #2563eb;
-      text-decoration: none;
-      transition: opacity 0.2s, color 0.2s;
+      color: #fff;
+      /* White links */
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      opacity: 0.9;
     }
 
     footer a:hover {
-      text-decoration: underline;
-      color: #1d4ed8;
+      opacity: 1;
+      color: #fff;
     }
 
     /* 移动端微调 */

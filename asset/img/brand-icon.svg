@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Cloud icon">
+  <circle cx="208" cy="176" r="44" fill="#FDBA2D" />
+  <circle cx="128" cy="120" r="72" fill="#F48120" />
+  <circle cx="64" cy="144" r="48" fill="#F48120" />
+  <rect x="40" y="144" width="168" height="64" rx="32" fill="#F48120" />
+</svg>

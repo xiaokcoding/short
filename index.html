@@ -348,15 +348,23 @@
     /* 移动端微调 */
     @media (max-width: 640px) {
 
-      /* Hide the top spacer on mobile to prevent content pushing */
+      /* Enable top spacer on mobile but reduce height to save space */
       body::before {
-        display: none;
+        display: block;
+        height: 50px;
+      }
+
+      /* Reduce footer height on mobile to match spacer and save space */
+      footer {
+        height: 50px;
       }
 
       main {
         padding: 1.5rem;
-        width: 85%;
-        /* Reverted to original width */
+        width: 82%;
+        /* Narrower width to show more background */
+        max-width: 400px;
+        /* Ensure it doesn't get too wide on larger phones */
       }
 
       header h1 {

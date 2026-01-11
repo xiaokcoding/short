@@ -33,6 +33,8 @@
       margin: 0;
       padding: 0;
       height: 100vh;
+      height: 100dvh;
+      /* Use dynamic viewport height for mobile browsers */
       /* Fixed height to viewport */
       overflow: hidden;
       /* Prevent scrolling */
@@ -45,6 +47,15 @@
       color: var(--text-color);
       -webkit-font-smoothing: antialiased;
       position: relative;
+    }
+
+    /* Add a top spacer to balance the footer for perfect vertical centering */
+    body::before {
+      content: '';
+      display: block;
+      height: 80px;
+      /* Must match footer height */
+      flex-shrink: 0;
     }
 
     /* 主容器：卡片样式 */
@@ -299,7 +310,9 @@
       /* bottom: 0; */
       /* left: 0; */
       width: 100%;
-      height: 60px;
+      width: 100%;
+      height: 80px;
+      /* Fixed total height */
       /* Fixed height for the footer area */
       display: flex;
       align-items: center;
@@ -308,7 +321,8 @@
       color: #334155;
       /* Reverted to dark color */
       font-weight: 500;
-      padding: 1rem 0;
+      padding: 0;
+      box-sizing: border-box;
       /* Remove padding as flex handles centering */
       /* margin-top: auto; Removed to allow main's margin: auto to center content */
     }
@@ -333,9 +347,16 @@
 
     /* 移动端微调 */
     @media (max-width: 640px) {
+
+      /* Hide the top spacer on mobile to prevent content pushing */
+      body::before {
+        display: none;
+      }
+
       main {
-        padding: 1.25rem;
-        width: 94%;
+        padding: 1.5rem;
+        width: 85%;
+        /* Reverted to original width */
       }
 
       header h1 {

@@ -32,13 +32,13 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       /* Fixed height to viewport */
-      overflow: hidden;
+      /* overflow: hidden; Removed to allow scrolling */
       /* Prevent scrolling */
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      /* justify-content: center; Removed to allow margin: auto to handle vertical centering with scrolling support */
       align-items: center;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
@@ -61,7 +61,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.6);
-      margin: auto;
+      margin: 2rem auto;
+      /* Add vertical margin for spacing on scroll */
       /* Center in flex container */
     }
 
@@ -294,9 +295,9 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      /* position: absolute; Removed absolute positioning */
+      /* bottom: 0; */
+      /* left: 0; */
       width: 100%;
       height: 60px;
       /* Fixed height for the footer area */
@@ -307,8 +308,10 @@
       color: #334155;
       /* Reverted to dark color */
       font-weight: 500;
-      padding: 0;
+      padding: 1rem 0;
       /* Remove padding as flex handles centering */
+      margin-top: auto;
+      /* Push footer to bottom */
     }
 
     footer p {
@@ -428,8 +431,25 @@
     }
 
     @media (max-width: 520px) {
+
+      /* Force 3 columns on mobile, but make them compact */
       .feature-grid {
-        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+
+      .feature-card {
+        padding: 0.6rem 0.25rem;
+        font-size: 0.75rem;
+      }
+
+      .feature-icon {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 0.15rem;
+      }
+
+      .feature-card strong {
+        font-size: 0.8rem;
       }
     }
   </style>

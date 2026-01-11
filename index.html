@@ -32,9 +32,9 @@
     body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
+      height: 100vh;
       /* Fixed height to viewport */
-      /* overflow: hidden; Removed to allow scrolling */
+      overflow: hidden;
       /* Prevent scrolling */
       display: flex;
       flex-direction: column;
@@ -61,8 +61,8 @@
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.6);
-      margin: 2rem auto;
-      /* Add vertical margin for spacing on scroll */
+      margin: auto;
+      /* Use auto margin for both vertical and horizontal centering */
       /* Center in flex container */
     }
 
@@ -310,8 +310,7 @@
       font-weight: 500;
       padding: 1rem 0;
       /* Remove padding as flex handles centering */
-      margin-top: auto;
-      /* Push footer to bottom */
+      /* margin-top: auto; Removed to allow main's margin: auto to center content */
     }
 
     footer p {
@@ -335,8 +334,8 @@
     /* 移动端微调 */
     @media (max-width: 640px) {
       main {
-        padding: 1.5rem;
-        width: 85%;
+        padding: 1.25rem;
+        width: 94%;
       }
 
       header h1 {
